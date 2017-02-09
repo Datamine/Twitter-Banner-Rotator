@@ -38,7 +38,12 @@ def main():
     current_banner = banners[0]
     path_to_current_banner = "Banners/" + current_banner
     logging.info("Selected banner: " + current_banner)
+
+    # we re-write the banner-list to achieve a cycling/rotating effect.
     cycled_banners = banners[1:] + [banners[0]]
+    with open("banner_list.txt", 'w') as f:
+        for banner in cycled_banners:
+            f.write(banner + "\n")
 
     api = authenticate()
 
