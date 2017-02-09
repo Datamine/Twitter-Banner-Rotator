@@ -14,7 +14,7 @@ Rotates your Twitter banner picture every 24 hours!
     See [instructions](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote) for adding a heroku remote
     to your git repository.
 4. Back on the Heroku app dashboard, on app addons, add the `scheduler`. 
-    Set it to schedule `python run.py` once a day. (Or hourly/every 10 minutes depending on the level of pizzazz that you want.)
+    Set it to schedule `python run.py` once a day. (Or hourly/every 10 minutes depending on the level of skittish pizzazz that you want.)
 3. Go on Twitter. [Make a new app](https://apps.twitter.com/) or use one that you've created previously. Obtain: 
     - `consumer_key`
     - `consumer_secret` 
@@ -38,6 +38,10 @@ Rotates your Twitter banner picture every 24 hours!
     ```
     
 8. You can then view the logs either on app dashboard, or using `heroku logs --app <your app name here> --tail` from the command line.
+    Check the logs to make sure everyhing works as desired. 
+
+I suggest changing your scheduled task's frequency to every 10 minutes in the start, so you can easily verify that it works,
+then changing it to daily thereafter.
 
 ## Extensions
 
