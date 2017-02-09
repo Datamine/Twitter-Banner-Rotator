@@ -14,5 +14,12 @@ Rotates your Twitter banner picture every 24 hours!
     obtained above. (It may be worth opening up the Python REPL and using the `twitter`
     library to authenticate with those credentials, just to make sure that it works.)
 5. Download the pictures you like, and put them in the `Banners/` folder.
-6. Write `ls Banners/ > banners_list.txt` to store the filenames for 
-    your banners in the `banners_list` file.
+6. Write `ls Banners/ > banner_list.txt` to store the filenames for 
+    your banners in the `banner_list` file.
+
+## Issues
+
+- `.gif` files currently fail when you try to upload them. 
+    This appears to be a problem in the `python-twitter` library.
+    See the [issue here](https://github.com/bear/python-twitter/issues/435).
+    You can correct this in the meantime by using ImageMagic to convert any gifs to jpg.
