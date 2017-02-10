@@ -1,5 +1,8 @@
 # Twitter-Banner-Rotator
-Rotates your Twitter banner picture every 24 hours!
+
+This project contains a Python script for updating your Twitter banner picture. By deploying this script (and a set of
+images) to Heroku, and setting a scheduler to run the script once a day, your Twitter banner picture will get 
+automatically updated once a day -- cycling through the set of images you provided.
 
 ## Instructions 
 
