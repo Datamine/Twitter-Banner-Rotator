@@ -1,4 +1,8 @@
 #!/usr/bin/env python2.7
+"""
+authenticates with twitter and updates the user's twitter banner
+according to the current top item in a banner-queue stored in a text file.
+"""
 
 import twitter
 import logging
@@ -28,22 +32,20 @@ def authenticate():
     logging.info("Authentication Successful!")
     return api
 
-
-
 def main():
     logging.info("Starting run.py")
 
-    with open("banner_list.txt", 'r') as f:
-        banners = [x.strip() for x in f.readlines()]
+    with open("banner_list.txt", 'r') as in_file:
+        banners = [x.strip() for x in in_file.readlines()]
     current_banner = banners[0]
     path_to_current_banner = "Banners/" + current_banner
     logging.info("Selected banner: " + current_banner)
 
     # we re-write the banner-list to achieve a cycling/rotating effect.
     cycled_banners = banners[1:] + [banners[0]]
-    with open("banner_list.txt", 'w') as f:
+    with open("banner_list.txt", 'w') as out_file:
         for banner in cycled_banners:
-            f.write(banner + "\n")
+            out_file.write(banner + "\n")
 
     api = authenticate()
 
@@ -53,5 +55,5 @@ def main():
     # Again, this only executes if the above did not throw an error & crash
     logging.info("Banner updated successfully!")
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
