@@ -65,3 +65,7 @@ The following are all quite straight-forwardly possible:
     This appears to be a problem in the `python-twitter` library.
     See the [issue here](https://github.com/bear/python-twitter/issues/435).
     You can correct this in the meantime by using ImageMagic to convert any gifs to jpg.
+
+-----
+
+You can also read about this project on [my blog](http://johnloeber.com/docs/twitter-rotate.html).
