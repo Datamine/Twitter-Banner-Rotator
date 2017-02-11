@@ -76,7 +76,7 @@ The following are all quite straight-forwardly possible:
     the entire setup to AWS.
 
 - Since the script selects a banner from a set of pictures at random, it's currently
-    possible for the new banner to be the same as the one currently already chosen.
+    possible for the newly chosen banner to be the same as the one already in place.
     This happens on an update with probability 1/n, where n is the number of pictures
     in the `Banners` directory. There are some tricks that could be employed to
     prevent this, but I've currently deemed this nonessential.

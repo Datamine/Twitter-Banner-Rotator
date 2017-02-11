@@ -37,7 +37,7 @@ def main():
     logging.info("Starting run.py")
 
     logging.info("Selecting banner at random.")
-    path_to_new_banner = choice(listdir("Banners/"))
+    path_to_new_banner = "Banners/" + choice(listdir("Banners/"))
     logging.info("Selected banner: " + path_to_new_banner)
 
     api = authenticate()
