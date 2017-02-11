@@ -2,7 +2,7 @@
 
 This project contains a Python script for updating your Twitter banner picture. By deploying this script (and a set of
 images) to Heroku, and setting a scheduler to run the script once a day, your Twitter banner picture will get 
-automatically updated once a day -- cycling through the set of images you provided.
+automatically updated once a day --  selecting one at random from a set of images you provided.
 
 ## Instructions 
 
@@ -30,9 +30,7 @@ automatically updated once a day -- cycling through the set of images you provid
     not the `twitter` library. You'll want to `pip install python-twitter`. If you run
     into a naming conflict, I suggest you use a [virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/).)
 5. Download the pictures you like, and put them in the `Banners/` folder.
-6. In the terminal, type `ls Banners/ > banner_list.txt` to store the filenames for 
-    your banners in the `banner_list` file.
-7. To deploy your application to heroku, type:
+6. To deploy your application to heroku, type:
     
     ```
     git add .
@@ -40,7 +38,7 @@ automatically updated once a day -- cycling through the set of images you provid
     git push heroku master
     ```
     
-8. You can then view the logs either on app dashboard, or using `heroku logs --app <your app name here> --tail` from the command line.
+7. You can then view the logs either on app dashboard, or using `heroku logs --app <your app name here> --tail` from the command line.
     Check the logs to make sure everyhing works as desired. 
 
 I suggest changing your scheduled task's frequency to every 10 minutes in the start, so you can easily verify that it works,
@@ -52,7 +50,7 @@ The following are all quite straight-forwardly possible:
 
 - If you want to rotate among lots of images, you don't need to store them all
     in a `Banners/` folder. That can get cumbersome. Instead, you can upload them
-    to an external image host, e.g. [imgur](www.imgur.com), and let `banners_list.txt`
+    to an external image host, e.g. [imgur](www.imgur.com), and let some file, e.g. `banners_list.txt`
     be a list of URLs to your banner images. Then you can use `urllib.urlretrieve`
     to download the image to a temporary file, upload the file to Twitter, and 
     delete the file afterwards.
@@ -62,12 +60,20 @@ The following are all quite straight-forwardly possible:
     Cadre's [stochastic planet](http://stochasticplanet.tumblr.com/)
     project.
 
-## Issues
+## Issues & Notes
 
 - `.gif` files currently fail when you try to upload them. 
     This appears to be a problem in the `python-twitter` library.
     See the [issue here](https://github.com/bear/python-twitter/issues/435).
     You can correct this in the meantime by using ImageMagic to convert any gifs to jpg.
+
+- At first this script was written to cycle through a set of images. However, this relied on 
+    the script being able to write to a file to denote the current position in the cycle,
+    which is not possible because Heroku's filesystem is read-only. I have been led
+    to believe that the best alternative is to attach a small database to store
+    that index, but this seems like a cumbersome solution, especially if I'm releasing
+    this as a tool for other people to use. It'd be better to migrate
+    the entire setup to AWS.
 
 -----
 

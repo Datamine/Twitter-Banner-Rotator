@@ -6,8 +6,9 @@ according to the current top item in a banner-queue stored in a text file.
 
 import twitter
 import logging
-from os import environ
+from os import environ, listdir
 from sys import stdout
+from random import choice
 
 logging.basicConfig(stream=stdout, level=logging.DEBUG)
 
@@ -35,22 +36,14 @@ def authenticate():
 def main():
     logging.info("Starting run.py")
 
-    with open("banner_list.txt", 'r') as in_file:
-        banners = [x.strip() for x in in_file.readlines()]
-    current_banner = banners[0]
-    path_to_current_banner = "Banners/" + current_banner
-    logging.info("Selected banner: " + current_banner)
-
-    # we re-write the banner-list to achieve a cycling/rotating effect.
-    cycled_banners = banners[1:] + [banners[0]]
-    with open("banner_list.txt", 'w') as out_file:
-        for banner in cycled_banners:
-            out_file.write(banner + "\n")
+    logging.info("Selecting banner at random.")
+    path_to_new_banner = choice(listdir("Banners/"))
+    logging.info("Selected banner: " + path_to_new_banner)
 
     api = authenticate()
 
     logging.info("Attempting to Update Banner!")
-    api.UpdateBanner(path_to_current_banner)
+    api.UpdateBanner(path_to_new_banner)
 
     # Again, this only executes if the above did not throw an error & crash
     logging.info("Banner updated successfully!")
